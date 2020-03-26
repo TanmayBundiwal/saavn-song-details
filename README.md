@@ -1,5 +1,5 @@
 # saavn-song-details
-Downloads details of your entire saavn playlist and stores it in a csv file.
+Downloads details of a single saavn playlist and stores it in a csv file.
 
 Details downloaded - Title, album, singers, duration (in seconds), year, music, language, label and image_url (album art url)
 
