@@ -10,3 +10,5 @@ How to use:
 3) Move the downloaded webpage (Starred.html) to a new folder.  
 4) Place saavn_scraper.py in the same folder as the downloaded webpage.  
 5) Run the python script
+
+Requires Python 3
