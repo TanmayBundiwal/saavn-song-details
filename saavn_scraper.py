@@ -1,17 +1,19 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[ ]:
+# In[2]:
 
 
+import tkinter as tk
+import tkinter.filedialog as f   #because tkinter is structured in this way
+from tkinter import messagebox
 import json
 import bs4
 import re
 import csv
-import os
 
 
-# In[ ]:
+# In[3]:
 
 
 def remove_html_tags(text):
@@ -19,35 +21,52 @@ def remove_html_tags(text):
     return re.sub(clean, '', text)
 
 
-# In[ ]:
-
-
-url = os.path.join(".","Starred.html")
-page = open(url, encoding="utf8")
-StarredP = bs4.BeautifulSoup(page.read())
-
-
-# In[ ]:
-
-
-songs = StarredP.find_all('div', class_='song-json')
-
-
-# In[ ]:
+# In[4]:
 
 
 keys = ['title','album','singers','duration','year','music','language','label','image_url']
 
 
-# In[ ]:
+# Getting filepath from simple UI
+
+# In[5]:
 
 
-Output_file = open('All Songs.csv','w',newline='')
+root = tk.Tk()
+root.withdraw()
+filepath = tk.filedialog.askopenfile(parent=root,mode='r', title='Choose a file').name
+
+
+# In[6]:
+
+
+page = open(filepath, encoding="utf8")
+Playlist = bs4.BeautifulSoup(page.read())
+
+
+# In[7]:
+
+
+songs = Playlist.find_all('div', class_='song-json')
+
+
+# In[7]:
+
+
+root = tk.Tk()
+root.withdraw()
+filename = tk.filedialog.asksaveasfile(mode='w',title = 'Save file as',defaultextension=".csv", )
+
+
+# In[8]:
+
+
+Output_file = open(filename.name,'w',newline='')
 Out_Writer  = csv.writer(Output_file)
 Out_Writer.writerow(keys);
 
 
-# In[ ]:
+# In[9]:
 
 
 failed = []
@@ -64,16 +83,17 @@ for i in range(0,len(songs)):
         continue
 
 
-# In[ ]:
+# In[10]:
 
 
 Output_file.close()
 
 
-# In[ ]:
+# In[21]:
 
 
 if failed:
-    print('Details of '+str(len(failed))+' songs could not be extracted.')
-    print('Indices: '+str(failed))
+    root = tk.Tk()
+    root.withdraw()
+    messagebox.showwarning("Warning",'Details of '+str(len(failed))+' songs could not be extracted.  Indices: '+str(failed))
 
