@@ -5,10 +5,13 @@ Details downloaded - Title, album, singers, duration (in seconds), year, music, 
 
 How to use:
 
-1) Open playlist you wish to download on your browser.  
-2) Download the webpage as "Starred.html".(Right click + Save as)  
-3) Move the downloaded webpage (Starred.html) to a new folder.  
-4) Place saavn_scraper.py in the same folder as the downloaded webpage.  
-5) Run the python script
+1) Open playlist you wish to download on your browser. You must be logged in if your account is private.  
+2) Download the webpage (Right click + Save as)  
+3) Run the python script.
+4) It will ask you to select a file, select the downloaded webpage.
+5) It will ask you where you want to want to save the csv file.
+6) If there were some songs that failed processing, it will show a warning.
 
 Requires Python 3
+
+Update (30/04/20): Added simple UI using tkinter.
